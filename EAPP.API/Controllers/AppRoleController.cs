@@ -17,6 +17,7 @@ namespace EAPP.API.Controllers
         private readonly IAppRoleRepository _roleRepository;
         private readonly IMapper _mapper;
 
+
         public AppRoleController(IAppRoleRepository roleRepository, IMapper mapper)
         {
             _roleRepository = roleRepository;
