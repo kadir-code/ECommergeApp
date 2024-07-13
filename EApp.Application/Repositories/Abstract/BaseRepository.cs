@@ -47,7 +47,7 @@ namespace EApp.Application.Repositories.Abstract
 
         public async Task DeleteAsync(T entity)
         {
-            _context.Entry(entity).State = EntityState.Deleted;
+            //_context.Entry(entity).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
         }
     }

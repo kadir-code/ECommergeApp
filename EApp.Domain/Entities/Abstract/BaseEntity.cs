@@ -10,11 +10,19 @@ namespace EApp.Domain.Entities.Abstract
     public abstract class BaseEntity
     {
         public int Id { get; set; }
-        private DateTime _date=DateTime.Now;
-        public DateTime? CreateDate { get { return _date; } set { value = _date; } }
+        private DateTime _date = DateTime.Now;
+        public DateTime? CreateDate
+        {
+            get => _date;
+            set => value = _date;
+        }
         public DateTime? ModifiedDate { get; set; }
         public DateTime? RemovedDate { get; set; }
-        private Status _status= Status.Active;
-        public Status Status { get { return _status; } set { value = _status; } }
+        private Status _status;
+        public Status Status
+        {
+            get => _status;
+            set => _status = value;
+        }
     }
 }

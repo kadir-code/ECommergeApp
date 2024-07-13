@@ -17,6 +17,8 @@ namespace EApp.Domain.Entities.Concrete
         public string Address { get; set; }
         public string Password { get; set; }
         public ICollection<Order> Orders { get; set; }
+        public int AppRoleId { get; set; }
+        public AppRole AppRole { get; set; }
 
 
     }

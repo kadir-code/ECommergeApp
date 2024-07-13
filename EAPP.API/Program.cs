@@ -26,6 +26,7 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 builder.Services.AddScoped<IAppUserRepository, AppUserRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IAppRoleRepository, AppRoleRepository>();
 
 
 builder.Services.AddAutoMapper(typeof(Mappings));

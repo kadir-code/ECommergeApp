@@ -9,8 +9,14 @@ namespace EAPP.API.Models.Mapper
         public Mappings()
         {
             CreateMap<AppUser, CreateAppUserDTO>().ReverseMap();
-            CreateMap<Product,ProductListDTO>().ReverseMap();
+
+            CreateMap<Product,GetProductDTO>().ReverseMap();
             CreateMap<Product,CreateProductDTO>().ReverseMap();
+            CreateMap<Product, UpdateCategoryDTO>().ReverseMap();
+
+            CreateMap<AppRole,CreateRoleDTO>().ReverseMap();
+
+            CreateMap<Order, CreateOrderDTO>().ReverseMap();
         }
     }
 }

@@ -22,21 +22,6 @@ namespace EApp.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AppRoleAppUser", b =>
-                {
-                    b.Property<int>("AppRolesId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("AppUsersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AppRolesId", "AppUsersId");
-
-                    b.HasIndex("AppUsersId");
-
-                    b.ToTable("AppRoleAppUser");
-                });
-
             modelBuilder.Entity("EApp.Domain.Entities.Concrete.AppRole", b =>
                 {
                     b.Property<int>("Id")
@@ -48,7 +33,7 @@ namespace EApp.Infrastructure.Migrations
                     b.Property<DateTime?>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Definition")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -63,7 +48,7 @@ namespace EApp.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AppRole");
+                    b.ToTable("AppRoles");
                 });
 
             modelBuilder.Entity("EApp.Domain.Entities.Concrete.AppUser", b =>
@@ -77,6 +62,9 @@ namespace EApp.Infrastructure.Migrations
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AppRoleId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("CreateDate")
                         .HasColumnType("datetime2");
@@ -111,6 +99,8 @@ namespace EApp.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppRoleId");
 
                     b.ToTable("AppUsers");
                 });
@@ -189,19 +179,15 @@ namespace EApp.Infrastructure.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("AppRoleAppUser", b =>
+            modelBuilder.Entity("EApp.Domain.Entities.Concrete.AppUser", b =>
                 {
-                    b.HasOne("EApp.Domain.Entities.Concrete.AppRole", null)
-                        .WithMany()
-                        .HasForeignKey("AppRolesId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("EApp.Domain.Entities.Concrete.AppRole", "AppRole")
+                        .WithMany("AppUsers")
+                        .HasForeignKey("AppRoleId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("EApp.Domain.Entities.Concrete.AppUser", null)
-                        .WithMany()
-                        .HasForeignKey("AppUsersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Navigation("AppRole");
                 });
 
             modelBuilder.Entity("EApp.Domain.Entities.Concrete.Order", b =>
@@ -224,6 +210,11 @@ namespace EApp.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("EApp.Domain.Entities.Concrete.AppRole", b =>
+                {
+                    b.Navigation("AppUsers");
                 });
 
             modelBuilder.Entity("EApp.Domain.Entities.Concrete.AppUser", b =>
