@@ -1,8 +1,6 @@
 ﻿@model List<ProductListModel>
 
-@{
-    Layout = "_Layout";
-}
+
 
 <a asp-action="Create" asp-controller="Product" class="btn btn-outline-primary">Create</a>
 <div>
@@ -20,7 +18,7 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>Id</td>
+                    <td>@item.Id</td>
                     <td>@item.Name</td>
                     <td>@item.Price</td>
                     <td>@item.StockCode</td>

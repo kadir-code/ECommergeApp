@@ -1,0 +1,30 @@
+﻿@using System.Text.Json
+@model CreateProductModel
+
+<form class="w-75 p-3 mb-3 shadow mx-auto" asp-action="Create" asp-controller="Product" method="post">
+    <div class="mb-3">
+        <label for="@Model.Name" class="form-label">Product Name:</label>
+        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+        <input type="text" class="form-control" asp-for="@Model.Name" />
+    </div>
+
+    <div class="mb-3">
+        <label for="@Model.Price" class="form-label">Price:</label>
+        <span asp-validation-for="@Model.Price" class="text-danger"></span>
+        <input type="number" class="form-control" asp-for="@Model.Price" />
+    </div>
+    <div class="mb-3">
+        <label for="@Model.StockCode" class="form-label">Stock Code:</label>
+        <span asp-validation-for="@Model.StockCode" class="text-danger"></span>
+        <input type="text" class="form-control" asp-for="@Model.StockCode" />
+    </div>
+    <div class="mb-3">
+        <label for="@Model.OrderId" class="form-label">OrderId:</label>
+        <span asp-validation-for="@Model.OrderId" class="text-danger"></span>
+        <input type="number" class="form-control" asp-for="@Model.OrderId" />
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-primary w-100">Save</button>
+        <div asp-validation-summary="ModelOnly" class="text-bg-dark"></div>
+    </div>
+</form>

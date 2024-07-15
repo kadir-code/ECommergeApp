@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using EApp.Domain.Entities.Concrete;
+using EApp.Domain.Enums;
 using EApp.Infrastructure.Repositories.Interfaces.ConcreteRepositories;
 using EAPP.API.Models.DTOs;
 using Microsoft.AspNetCore.Http;
@@ -27,6 +28,17 @@ namespace EAPP.API.Controllers
                 var order = _mapper.Map<Order>(dto);
                 await _orderRepository.CreateAsync(order);
                 return Created("",order);
+            }
+            return BadRequest("Error");
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetOrders()
+        {
+            if (ModelState.IsValid)
+            {
+                var order = await _orderRepository.GetAllAsync(x=>x.Status!=Status.Removed);
+                return Ok(order);
+
             }
             return BadRequest("Error");
         }
