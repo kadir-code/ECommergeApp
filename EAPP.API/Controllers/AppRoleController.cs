@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EAPP.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class AppRoleController : ControllerBase

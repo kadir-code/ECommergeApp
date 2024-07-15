@@ -1,10 +1,10 @@
-﻿namespace EAPP.API.Models.DTOs
+﻿namespace EAPP.Web.Models
 {
-    public class GetProductDTO
+    public class ProductListModel
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public string StockCode { get; set; }
-        public int OrderId { get; set; }
     }
 }

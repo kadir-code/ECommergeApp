@@ -1,0 +1,36 @@
+﻿@model List<ProductListModel>
+
+@{
+    Layout = "_Layout";
+}
+
+<a asp-action="Create" asp-controller="Product" class="btn btn-outline-primary">Create</a>
+<div>
+    <table class="table table-bordered table-hover">
+        <thead>
+        </thead>
+        <tr>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Price</td>
+            <td>StockCode</td>
+            <td>Action</td>
+        </tr>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>@item.StockCode</td>
+                    <td>
+                        <a asp-action="Update" asp-controller="Product" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Update</a>
+                        <a asp-action="Delete" asp-controller="Product" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
