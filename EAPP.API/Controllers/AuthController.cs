@@ -15,12 +15,14 @@ namespace EAPP.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAppUserRepository _userRepository;
+        private readonly IAppRoleRepository _roleRepository;
         private readonly IMapper _maper;
 
-        public AuthController(IMapper maper, IAppUserRepository userRepository)
+        public AuthController(IMapper maper, IAppUserRepository userRepository, IAppRoleRepository roleRepository)
         {
             _maper = maper;
             _userRepository = userRepository;
+            _roleRepository = roleRepository;
         }
         [HttpPost]
         public async Task<IActionResult> Register(CreateAppUserDTO dto)
@@ -47,6 +49,8 @@ namespace EAPP.API.Controllers
                 dto.FirstName = user.FirstName;
                 dto.Id = user.Id;
                 dto.IsExist = true;
+                var role = await _roleRepository.GetDefaultAsync(x => x.Id == user.AppRoleId);
+                dto.Role = role.Description;
                 return Created("", JwtTokenGenerator.GenerateToken(dto));
             }
 
